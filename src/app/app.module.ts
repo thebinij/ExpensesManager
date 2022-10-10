@@ -18,6 +18,9 @@ import { FormsModule } from '@angular/forms';
 import { ExpensesComponent } from './expenses/expenses.component';
 import { LoginComponent } from './login/login.component';
 import { EmailValidatorDirective } from './shared/email-validator/email-validator.directive';
+import { HttpClientModule } from '@angular/common/http';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,6 +34,7 @@ import { EmailValidatorDirective } from './shared/email-validator/email-validato
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     FormsModule,
     AppRoutingModule,
     BrowserAnimationsModule,

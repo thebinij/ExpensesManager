@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {  Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Report } from './reports';
+import { ReportsService } from './reports.service';
 
 @Component({
   selector: 'app-reports',
@@ -16,10 +19,14 @@ export class ReportsComponent implements OnInit {
 
   hideExpenses = false;
 
-  constructor() { }
+  reports$:Observable<Report[]> = this.reportservice.getReports()
+
+  constructor(private reportservice: ReportsService) { }
 
   ngOnInit(): void {
+
   }
+ 
 
   toggle(){
     this.hideExpenses =!this.hideExpenses;

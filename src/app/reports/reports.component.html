@@ -1,11 +1,10 @@
 <!--Interpolition-->
 <h1>Welcome to Report of {{ userName }}</h1>
 
-
 <div [hidden]="hideExpenses">
-Total Expenses
-<!--Property Binding-->
-<div [innerText]="totalExpenses"></div>
+  Total Expenses
+  <!--Property Binding-->
+  <div [innerText]="totalExpenses"></div>
 </div>
 
 <!-- Event Binding-->
@@ -14,25 +13,45 @@ Total Expenses
 <!--Directive-->
 <!--Structural Directive:  can modify entire dom by adding and removing dom-->
 <!--NG IF AND NG STYLE-->
-<div *ngIf="totalExpenses < 15000" [ngStyle]="{'color': totalExpenses<5000 ? 'red': 'goldenrod'}">
-    <p>Your Expenses is too low!</p>
+<div
+  *ngIf="totalExpenses < 15000"
+  [ngStyle]="{ color: totalExpenses < 5000 ? 'red' : 'goldenrod' }"
+>
+  <p>Your Expenses is too low!</p>
 </div>
 
 <!--NG FOR  and NG CLASS-->
-<ul [ngClass]="e ? 'even' : 'odd'" *ngFor="let expense of listOfExpenses; let e = even">
-    <li>{{expense}}</li>
+<ul
+  [ngClass]="e ? 'even' : 'odd'"
+  *ngFor="let expense of listOfExpenses; let e = even"
+>
+  <li>{{ expense }}</li>
 </ul>
 
 <!--NG SWITCH-->
 <div [ngSwitch]="role">
-    <div *ngSwitchCase="'User'">Welcome User!</div>
-    <div *ngSwitchCase="'Admin'">Welcome Admin!</div>
-    <div *ngSwitchDefault>Welcome Guest!</div>
+  <div *ngSwitchCase="'User'">Welcome User!</div>
+  <div *ngSwitchCase="'Admin'">Welcome Admin!</div>
+  <div *ngSwitchDefault>Welcome Guest!</div>
 </div>
 
 <!--DatePipe -->
-<p>Today's Date: {{today | date:'dd/MMM/yyyy'}}</p>
+<p>Today's Date: {{ today | date: "dd/MMM/yyyy" }}</p>
 <!--CurrentPipe-->
 
+<p>Expenes Recorded Today; {{ expenseamount | currency: "USD" }}</p>
 
-<p>Expenes Recorded Today; {{expenseamount | currency: 'USD'}}</p>
+<table class="table">
+  <tr>
+    <th>Id</th>
+    <th>PostId</th>
+    <th>Name</th>
+    <th>Email</th>
+  </tr>
+  <tr *ngFor="let report of reports$ | async">
+    <td>{{ report.id }}</td>
+    <td>{{ report.postId }}</td>
+    <td>{{ report.name }}</td>
+    <td>{{ report.email }}</td>
+  </tr>
+</table>
