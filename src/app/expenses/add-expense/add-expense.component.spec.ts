@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormsModule } from '@angular/forms';
 
 import { AddExpenseComponent } from './add-expense.component';
 
@@ -8,7 +9,9 @@ describe('AddExpenseComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AddExpenseComponent ]
+      declarations: [ AddExpenseComponent ],
+      imports: [
+        FormsModule]
     })
     .compileComponents();
 
