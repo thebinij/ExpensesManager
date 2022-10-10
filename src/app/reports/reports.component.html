@@ -1,0 +1,32 @@
+<!--Interpolition-->
+<h1>Welcome to Report of {{ userName }}</h1>
+
+
+<div [hidden]="hideExpenses">
+Total Expenses
+<!--Property Binding-->
+<div [innerText]="totalExpenses"></div>
+</div>
+
+<!-- Event Binding-->
+<button (click)="toggle()">Toggle</button>
+
+<!--Directive-->
+<!--Structural Directive:  can modify entire dom by adding and removing dom-->
+<!--NG IF AND NG STYLE-->
+<div *ngIf="totalExpenses < 15000" [ngStyle]="{'color': totalExpenses<5000 ? 'red': 'goldenrod'}">
+    <p>Your Expenses is too low!</p>
+</div>
+
+<!--NG FOR  and NG CLASS-->
+<ul [ngClass]="e ? 'even' : 'odd'" *ngFor="let expense of listOfExpenses; let e = even">
+    <li>{{expense}}</li>
+</ul>
+
+
+<!--NG SWITCH-->
+<div [ngSwitch]="role">
+    <div *ngSwitchCase="'User'">Welcome User!</div>
+    <div *ngSwitchCase="'Admin'">Welcome Admin!</div>
+    <div *ngSwitchDefault>Welcome Guest!</div>
+</div>
