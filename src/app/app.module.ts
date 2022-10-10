@@ -14,9 +14,13 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { NotfoundComponent } from './notfound/notfound.component';
-import { AddExpenseComponent } from './add-expense/add-expense.component';
+import { AddExpenseComponent } from './expenses/add-expense/add-expense.component';
+import { FormsModule } from '@angular/forms';
+
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { ExpensesComponent } from './expenses/expenses.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -25,10 +29,13 @@ import { MatNativeDateModule } from '@angular/material/core';
     NavigationComponent,
     DashboardComponent,
     NotfoundComponent,
-    AddExpenseComponent
+    AddExpenseComponent,
+    ExpensesComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     MatDatepickerModule,
     MatNativeDateModule,
     AppRoutingModule,

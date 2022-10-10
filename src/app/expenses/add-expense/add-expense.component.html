@@ -1,0 +1,90 @@
+<div *ngIf="successMessage != ''" class="alert alert-success">
+  {{ successMessage }}
+</div>
+<form #expenseform="ngForm" (ngSubmit)="AddExpense()">
+  <div class="form-group row">
+    <div class="row">
+      <div class="col-2">
+        <div class="date-picker">
+          <input
+            required
+            name="date"
+            [(ngModel)]="newExpense.Date"
+            matInput
+            [matDatepicker]="picker"
+            class="form-control"
+          />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker startView="month"></mat-datepicker>
+        </div>
+        <div class="valid-feedback">Looks good!</div>
+      </div>
+      <div class="col-2">
+        <select
+          required
+          name="type"
+          [(ngModel)]="newExpense.Type"
+          id="inputState"
+          class="form-control"
+        >
+          <option value="">Select Type</option>
+          <option>Utilities</option>
+          <option>Travel</option>
+          <option>Misc</option>
+        </select>
+      </div>
+      <div class="col-2">
+        <select
+          required
+          name="method"
+          [(ngModel)]="newExpense.Method"
+          id="inputState"
+          class="form-control"
+        >
+          <option value="">Select Method</option>
+          <option>Cash</option>
+          <option>Credit Card</option>
+          <option>Digital Wallet</option>
+        </select>
+      </div>
+      <div class="col">
+        <input
+          name="description"
+          [(ngModel)]="newExpense.Description"
+          type="text"
+          maxlength="40"
+          class="form-control"
+          placeholder="Description"
+        />
+      </div>
+      <div class="col-2">
+        <input
+          required
+          min="1"
+          name="amount"
+          [(ngModel)]="newExpense.Amount"
+          type="number"
+          class="form-control"
+          placeholder="Amount"
+        />
+      </div>
+    </div>
+  </div>
+  <div class="form-group row">
+    <div class="col-sm-10 button-group">
+      <button
+        [disabled]="expenseform.invalid"
+        type="submit"
+        class="btn btn-primary"
+      >
+        Add Expense
+      </button>
+      <button type="button" routerLink="/" class="btn btn-secondary">
+        Go Back
+      </button>
+    </div>
+  </div>
+</form>
