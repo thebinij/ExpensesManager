@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {DateAdapter, MAT_DATE_FORMATS} from '@angular/material/core';
-import { AppDateAdapter, APP_DATE_FORMATS } from '../../my-date-format';
+import { AppDateAdapter, APP_DATE_FORMATS } from '../../shared/custom-date-format/my-date-format';
 import { Expense } from '../expenses';
 
 @Component({

@@ -21,6 +21,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { ExpensesComponent } from './expenses/expenses.component';
 import { LoginComponent } from './login/login.component';
+import { EmailValidatorDirective } from './shared/email-validator/email-validator.directive';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { LoginComponent } from './login/login.component';
     NotfoundComponent,
     AddExpenseComponent,
     ExpensesComponent,
-    LoginComponent
+    LoginComponent,
+    EmailValidatorDirective
   ],
   imports: [
     BrowserModule,
