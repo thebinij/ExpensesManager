@@ -11,6 +11,8 @@ export class ReportsComponent implements OnInit {
   listOfExpenses = ['Utilities', 'Food and Groceries', 'Personal', 'HouseHold', 'Gifts', 'Interest', 'Travel and Vacations']
   role = 'User'
   totalExpenses = 4999
+  today = new Date()
+  expenseamount = 1200.022
 
   hideExpenses = false;
 

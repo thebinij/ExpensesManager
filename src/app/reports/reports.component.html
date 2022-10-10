@@ -23,10 +23,14 @@ Total Expenses
     <li>{{expense}}</li>
 </ul>
 
-
 <!--NG SWITCH-->
 <div [ngSwitch]="role">
     <div *ngSwitchCase="'User'">Welcome User!</div>
     <div *ngSwitchCase="'Admin'">Welcome Admin!</div>
     <div *ngSwitchDefault>Welcome Guest!</div>
 </div>
+
+<!--DatePipe -->
+<p>Today's Date: {{today | date:'dd/MMM/yyyy'}}</p>
+<!--CurrentPipe-->
+<p>Expenes Recorded Today; {{expenseamount | currency: 'USD'}}</p>
