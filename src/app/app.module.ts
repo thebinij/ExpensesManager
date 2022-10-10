@@ -14,14 +14,11 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { NotfoundComponent } from './notfound/notfound.component';
-import { AddExpenseComponent } from './expenses/add-expense/add-expense.component';
 import { FormsModule } from '@angular/forms';
-
-import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatNativeDateModule } from '@angular/material/core';
 import { ExpensesComponent } from './expenses/expenses.component';
 import { LoginComponent } from './login/login.component';
 import { EmailValidatorDirective } from './shared/email-validator/email-validator.directive';
+import { ExpensesModule } from './expenses/expenses.module';
 
 @NgModule({
   declarations: [
@@ -30,7 +27,6 @@ import { EmailValidatorDirective } from './shared/email-validator/email-validato
     NavigationComponent,
     DashboardComponent,
     NotfoundComponent,
-    AddExpenseComponent,
     ExpensesComponent,
     LoginComponent,
     EmailValidatorDirective
@@ -38,8 +34,7 @@ import { EmailValidatorDirective } from './shared/email-validator/email-validato
   imports: [
     BrowserModule,
     FormsModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
+    ExpensesModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     LayoutModule,
@@ -47,10 +42,9 @@ import { EmailValidatorDirective } from './shared/email-validator/email-validato
     MatButtonModule,
     MatSidenavModule,
     MatIconModule,
-    MatListModule
+    MatListModule,
   ],
   providers: [  
-    MatDatepickerModule
   ],
   bootstrap: [AppComponent]
 })
