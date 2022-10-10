@@ -1,5 +1,6 @@
 import {  Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
+import { map, Observable } from 'rxjs';
 import { Report } from './reports';
 import { ReportsService } from './reports.service';
 
@@ -20,11 +21,12 @@ export class ReportsComponent implements OnInit {
   hideExpenses = false;
 
   reports$:Observable<Report[]> = this.reportservice.getReports()
+  preFetchReports$:Observable<Report[]>  = this.activatedroute.data.pipe(map(x => x['reports']))
 
-  constructor(private reportservice: ReportsService) { }
+  constructor(private reportservice: ReportsService, private activatedroute: ActivatedRoute) { }
 
   ngOnInit(): void {
-
+  
   }
  
 

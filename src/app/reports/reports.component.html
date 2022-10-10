@@ -48,7 +48,7 @@
     <th>Name</th>
     <th>Email</th>
   </tr>
-  <tr *ngFor="let report of reports$ | async">
+  <tr *ngFor="let report of preFetchReports$ | async">
     <td>{{ report.id }}</td>
     <td>{{ report.postId }}</td>
     <td>{{ report.name }}</td>
