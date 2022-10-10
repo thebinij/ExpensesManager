@@ -14,6 +14,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { NotfoundComponent } from './notfound/notfound.component';
+import { AddExpenseComponent } from './add-expense/add-expense.component';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -21,10 +24,13 @@ import { NotfoundComponent } from './notfound/notfound.component';
     ReportsComponent,
     NavigationComponent,
     DashboardComponent,
-    NotfoundComponent
+    NotfoundComponent,
+    AddExpenseComponent
   ],
   imports: [
     BrowserModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     LayoutModule,
@@ -34,7 +40,9 @@ import { NotfoundComponent } from './notfound/notfound.component';
     MatIconModule,
     MatListModule
   ],
-  providers: [],
+  providers: [  
+    MatDatepickerModule
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
