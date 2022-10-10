@@ -8,6 +8,7 @@ import { LoginComponent } from './login/login.component';
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'dashboard', component: DashboardComponent },
+  { path: 'expenses', loadChildren:()=> import('./expenses/expenses.module').then((m)=> m.ExpensesModule) },
   { path: 'reports', component: ReportsComponent },
   { path: 'login', component: LoginComponent },
   { path: '**', component: NotfoundComponent },

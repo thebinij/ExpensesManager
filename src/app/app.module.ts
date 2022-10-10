@@ -18,8 +18,6 @@ import { FormsModule } from '@angular/forms';
 import { ExpensesComponent } from './expenses/expenses.component';
 import { LoginComponent } from './login/login.component';
 import { EmailValidatorDirective } from './shared/email-validator/email-validator.directive';
-import { ExpensesModule } from './expenses/expenses.module';
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,7 +32,6 @@ import { ExpensesModule } from './expenses/expenses.module';
   imports: [
     BrowserModule,
     FormsModule,
-    ExpensesModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     LayoutModule,

@@ -4,7 +4,7 @@ import { AddExpenseComponent } from './add-expense/add-expense.component';
 import { ExpensesComponent } from './expenses.component';
 
 const routes: Routes = [
-  { path: 'expenses', component: ExpensesComponent, children: [
+  { path: '', component: ExpensesComponent, children: [
     { path: 'add-expense', component: AddExpenseComponent }
   ] },
 ];

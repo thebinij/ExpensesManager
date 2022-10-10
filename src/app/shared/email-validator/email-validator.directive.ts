@@ -10,7 +10,7 @@ import { AbstractControl, NG_VALIDATORS, ValidationErrors, Validator } from '@an
 export class EmailValidatorDirective implements Validator {
 
   validate(control: AbstractControl<string, any>): ValidationErrors | null {
-      if(control.value.includes("test")){
+      if(control.value?.includes("test")){
         return {
           invalidEmail:true
         }
