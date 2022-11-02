@@ -1,7 +1,7 @@
 export interface Expense {
-    Date: Date,
-    Type: string,
-    Method: string,
-    Description: string,
-    Amount: number
+    date: Date,
+    type: string,
+    method: string,
+    description: string,
+    amount: number
 }

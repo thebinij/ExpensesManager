@@ -1,39 +1,33 @@
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Date</th>
-      <th scope="col">Expense Type</th>
-      <th scope="col">Amount</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>2022/10/01</td>
-      <td>Utilities</td>
-      <td>2500</td>
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>2022/10/03</td>
-      <td>Groceries</td>
-      <td>1500</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td>2022/10/10</td>
-      <td>Transportation</td>
-      <td>1000</td>
-    </tr>
-  </tbody>
-</table>
-<div class="button-group">
-  <button type="button" class="btn btn-success" routerLink="add-expense">
-    New Expense
-  </button>
-  <button type="button" routerLink="/expenses" class="btn btn-secondary">
-    Close
-  </button>
+<div class="content-wrapper">
+  <div class="button-group">
+    <button type="button" class="btn btn-success" routerLink="add-expense">
+      New Expense
+    </button>
+    <button type="button" routerLink="/expenses" class="btn btn-secondary">
+      Close
+    </button>
+  </div>
+  <router-outlet></router-outlet>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Date</th>
+        <th scope="col">Type</th>
+        <th scope="col">Method</th>
+        <th scope="col">Description</th>
+        <th scope="col">Amount</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let expense of totalExpenses">
+        <th scope="row">1</th>
+        <td>{{ expense.date | date: "longDate" }}</td>
+        <td>{{ expense.type }}</td>
+        <td>{{ expense.method }}</td>
+        <td>{{ expense.description }}</td>
+        <td>{{ expense.amount }}</td>
+      </tr>
+    </tbody>
+  </table>
 </div>
-<router-outlet></router-outlet>

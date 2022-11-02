@@ -8,7 +8,7 @@ import { filter } from 'rxjs';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent  implements OnInit {
-  title = 'expenses-manager';
+  title = 'wealth-manager';
   constructor(private router:Router){}
   ngOnInit(){
     this.router.events.pipe(

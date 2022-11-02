@@ -7,9 +7,11 @@
     [mode]="(isHandset$ | async) ? 'over' : 'side'"
     [opened]="(isHandset$ | async) === false"
   >
-    <mat-toolbar>Expense Manager</mat-toolbar>
+    <mat-toolbar>Wealth Manager</mat-toolbar>
     <mat-nav-list>
       <a mat-list-item routerLink="/dashboard">Dashboard</a>
+      <a mat-list-item routerLink="/expenses">Assets</a>
+      <a mat-list-item routerLink="/expenses">Liabilities</a>
       <a mat-list-item routerLink="/expenses">Expenses</a>
       <a mat-list-item routerLink="/reports">Reports</a>
     </mat-nav-list>
