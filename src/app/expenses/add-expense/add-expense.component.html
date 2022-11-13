@@ -1,6 +1,5 @@
-<div *ngIf="successMessage != ''" class="alert alert-success">
-  {{ successMessage }}
-</div>
+<app-toaster></app-toaster>
+
 <form #expenseform="ngForm" (ngSubmit)="createNewExpenses()">
   <div class="form-group row g-3">
     <div class="col-auto">

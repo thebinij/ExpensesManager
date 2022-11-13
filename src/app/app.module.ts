@@ -21,6 +21,7 @@ import { EmailValidatorDirective } from './shared/email-validator/email-validato
 import { HttpClientModule } from '@angular/common/http';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,7 +31,7 @@ import { HttpClientModule } from '@angular/common/http';
     NotfoundComponent,
     ExpensesComponent,
     LoginComponent,
-    EmailValidatorDirective
+    EmailValidatorDirective,
   ],
   imports: [
     BrowserModule,
