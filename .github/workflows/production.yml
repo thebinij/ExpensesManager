@@ -4,8 +4,8 @@ name: Production build and deploy to Netlify
 # When workflow is triggered
 on:
   push:
-    tags:
-      - "v*"
+    branches:
+      - master
 
 # Jobs to carry out
 jobs:
