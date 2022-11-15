@@ -1,24 +1,22 @@
 import { Injectable } from '@angular/core';
-
+import { HttpClient } from '@angular/common/http';
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
 
-  isLoggedIn:boolean = false;
-  isAdmin:boolean = false;
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   Login(email:string, password:string){
-    if (email === 'admin@gmail.com' && password === 'Admin123') {
-     this.isLoggedIn = true;
-     this.isAdmin = true;
-    }
-    else if(email === 'user@gmail.com' && password === 'User123'){
-      this.isLoggedIn = true;
-      this.isAdmin = false;
-    }
-    return this.isLoggedIn;
+    const headers = { 'content-type': 'application/json'}  
+    const body =  JSON.stringify( {email, password} );
+    return this.http.post<any>(
+      'https://binij-web-server.netlify.app/.netlify/functions/wealthmanager/login',
+      body,{'headers':headers}
+    );
   }
- 
+  checkRefreshToken(){
+    if(localStorage.getItem('refreshToken')) return true;
+    return false;
+  }
 }

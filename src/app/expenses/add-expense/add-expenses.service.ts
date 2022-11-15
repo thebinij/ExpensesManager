@@ -12,8 +12,8 @@ export class AddExpensesService {
     const headers = { 'access-control-allow-origin': '*',"Access-Control-Allow-Headers":"*" }
     const body = { payload };
     return this.http.post<any>(
-      'https://binij-web-server.netlify.app/.netlify/functions/wealth-manager-expenses-create',
-      body, {headers}
+      'https://binij-web-server.netlify.app/.netlify/functions/wealthmanager/expenses',
+      body,{'headers':headers}
     );
   }
 }
