@@ -4,7 +4,7 @@ import { Observable, shareReplay } from 'rxjs';
 import { ExpensesCacheService } from './expenses-cache.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ExpensesService {
   readonly endpoint =

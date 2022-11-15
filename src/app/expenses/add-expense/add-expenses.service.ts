@@ -9,8 +9,8 @@ export class AddExpensesService {
   constructor(private http: HttpClient) {}
 
   addExpense(payload:Expense) {
-    const headers = { 'access-control-allow-origin': '*',"Access-Control-Allow-Headers":"*" }
-    const body = { payload };
+    const headers = { 'content-type': 'application/json'}  
+    const body = JSON.stringify( payload );
     return this.http.post<any>(
       'https://binij-web-server.netlify.app/.netlify/functions/wealthmanager/expenses',
       body,{'headers':headers}
