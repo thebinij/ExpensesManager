@@ -19,6 +19,8 @@ import { EmailValidatorDirective } from './shared/email-validator/email-validato
 import { HttpClientModule } from '@angular/common/http';
 import { NavigationComponent } from './_layout/navigation/navigation.component';
 import { SignupComponent } from './signup/signup.component';
+import { ToastComponent } from './shared/toast-notification/toast/toast.component';
+import { ToasterComponent } from './shared/toast-notification/toaster/toaster.component';
 
 
 @NgModule({
@@ -31,7 +33,9 @@ import { SignupComponent } from './signup/signup.component';
     LoginComponent,
     EmailValidatorDirective,
     NavigationComponent,
-    SignupComponent
+    SignupComponent,
+    ToastComponent,
+    ToasterComponent
       ],
   imports: [
     BrowserModule,
