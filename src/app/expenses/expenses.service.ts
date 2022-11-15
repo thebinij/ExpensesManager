@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { map, Observable, shareReplay } from 'rxjs';
-import { Expense } from './expenses';
+import { Observable, shareReplay } from 'rxjs';
 import { ExpensesCacheService } from './expenses-cache.service';
 
 @Injectable({
@@ -9,7 +8,7 @@ import { ExpensesCacheService } from './expenses-cache.service';
 })
 export class ExpensesService {
   readonly endpoint =
-    'https://binij-web-server.netlify.app/.netlify/functions/wealth-manager-expenses-get';
+    'https://binij-web-server.netlify.app/.netlify/functions/wealthmanager/expenses';
   readonly cache_size = 1;
 
   constructor(private http: HttpClient, private expensesCacheService: ExpensesCacheService) {}

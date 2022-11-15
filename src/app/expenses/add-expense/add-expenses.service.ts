@@ -12,7 +12,7 @@ export class AddExpensesService {
     const headers = { 'content-type': 'application/json'}  
     const body = JSON.stringify( payload );
     return this.http.post<any>(
-      'https://binij-web-server.netlify.app/.netlify/functions/api/create-expenses',
+      'https://binij-web-server.netlify.app/.netlify/functions/wealthmanager/expenses',
       body,{'headers':headers}
     );
   }
