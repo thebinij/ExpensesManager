@@ -1,15 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ExpensesRoutingModule } from './expenses-routing.module';
-import { AddExpenseComponent } from './add-expense/add-expense.component';
+import { StocksComponent } from './stocks/stocks.component';
+import { AssetsRoutingModule } from './assets-routing.module';
 import { FormsModule } from '@angular/forms';
-import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+
 @NgModule({
-  declarations: [AddExpenseComponent],
+  declarations: [StocksComponent],
   imports: [
     CommonModule,
-    ExpensesRoutingModule,
+    AssetsRoutingModule,
     FormsModule,
     MatDatepickerModule,
     MatNativeDateModule,
@@ -18,4 +19,4 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatDatepickerModule
   ],
 })
-export class ExpensesModule { }
+export class AssetsModule { }

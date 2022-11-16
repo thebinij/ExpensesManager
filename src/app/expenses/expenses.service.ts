@@ -17,10 +17,9 @@ export class ExpensesService {
     let expenses$ = this.expensesCacheService.getValue();
     console.log('cached:', expenses$)
     if (!expenses$) {
-      console.log('called to api')
-       //  const headers = { 'content-type': 'application/json'}
-    // const headers = { 'Authorization': 'Bearer my-token', 'My-Custom-Header': 'foobar' }
-       expenses$ = this.http.get<any>(this.endpoint).pipe(shareReplay(this.cache_size))
+      const token = localStorage.getItem('accessToken')
+      const headers = {'content-type': 'application/json', 'Authorization': `Bearer ${token}` }
+       expenses$ = this.http.get<any>(this.endpoint,{'headers':headers}).pipe(shareReplay(this.cache_size))
       this.expensesCacheService.setValue(expenses$)
     }
     return expenses$;

@@ -17,10 +17,11 @@ import { ExpensesComponent } from './expenses/expenses.component';
 import { LoginComponent } from './login/login.component';
 import { EmailValidatorDirective } from './shared/email-validator/email-validator.directive';
 import { HttpClientModule } from '@angular/common/http';
-import { NavigationComponent } from './_layout/navigation/navigation.component';
 import { SignupComponent } from './signup/signup.component';
 import { ToastComponent } from './shared/toast-notification/toast/toast.component';
 import { ToasterComponent } from './shared/toast-notification/toaster/toaster.component';
+import { NavigationComponent } from './_layout/navigation/navigation.component';
+import { AssetsComponent } from './assets/assets.component';
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import { ToasterComponent } from './shared/toast-notification/toaster/toaster.co
     NavigationComponent,
     SignupComponent,
     ToastComponent,
-    ToasterComponent
+    ToasterComponent,
+    AssetsComponent
       ],
   imports: [
     BrowserModule,
