@@ -12,11 +12,13 @@ export class ExpensesComponent implements OnInit {
     page: 1,
   pageSize: 8};
   constructor(private expenseservice: ExpensesService) { }
+  
   totalExpenses:Expense[] | undefined;
+
   ngOnInit(): void {
     this.expenseservice.getExpenses().subscribe({
-      next: data => {
-          this.totalExpenses = data[Object.keys(data)[0]]
+      next: response => {
+          this.totalExpenses = response.data
       },
       error: error => {
           this.errorMessage = error.message;

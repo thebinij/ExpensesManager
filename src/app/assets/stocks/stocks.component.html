@@ -1,0 +1,207 @@
+<form #stockform="ngForm" (ngSubmit)="createNewStock()">
+  <div class="form-group row g-3">
+    <div class="col-auto">
+      <div class="date-picker">
+        <input
+          required
+          name="date"
+          [(ngModel)]="newStock.date"
+          matInput
+          [matDatepicker]="picker"
+          class="form-control"
+        />
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker startView="month"></mat-datepicker>
+      </div>
+      <div class="valid-feedback">Looks good!</div>
+    </div>
+    <div class="col-auto">
+      <select
+        required
+        name="aciton-type"
+        [(ngModel)]="newStock.actionType"
+        id="inputState"
+        class="form-control"
+      >
+        <option value="">Action Type</option>
+        <option>Buy</option>
+        <option>Sell</option>
+      </select>
+    </div>
+    <div class="col-auto">
+      <select
+        required
+        name="select-ticker"
+        [(ngModel)]="newStock.ticker"
+        id="inputState"
+        class="form-control"
+      >
+        <option value="">Select Ticker</option>
+        <option>NABIL</option>
+        <option>SBL</option>
+        <option>NTC</option>
+        <option>SKBBL</option>
+        <option>KBL</option>
+        <option>NICA</option>
+      </select>
+    </div>
+    <div class="col-auto" *ngIf="newStock.actionType == 'Buy'">
+      <select
+        name="select-stocktype"
+        [(ngModel)]="newStock.stockType"
+        id="inputState"
+        class="form-control"
+      >
+        <option value="">Stock Type</option>
+        <option>Primary</option>
+        <option>Secondary</option>
+        <option>Bonus</option>
+        <option>Auction</option>
+      </select>
+    </div>
+    <div class="col-auto">
+      <input
+        required
+        min="1"
+        name="quantity"
+        [(ngModel)]="newStock.quantity"
+        type="number"
+        class="form-control"
+        placeholder="Quantity"
+      />
+    </div>
+    <div class="col-auto" *ngIf="newStock.actionType == 'Buy'">
+      <input
+        min="1"
+        name="costPrice"
+        [(ngModel)]="newStock.costPrice"
+        type="number"
+        class="form-control"
+        placeholder="Cost Price"
+      />
+    </div>
+    <div class="col-auto" *ngIf="newStock.actionType == 'Sell'">
+      <input
+        min="1"
+        name="netCostPrice"
+        [(ngModel)]="newStock.netCostPrice"
+        type="number"
+        class="form-control"
+        placeholder="Net Cost Price"
+      />
+    </div>
+    <div class="col-auto" *ngIf="newStock.actionType == 'Sell'">
+      <input
+        min="1"
+        name="costPrice"
+        [(ngModel)]="newStock.soldPrice"
+        type="number"
+        class="form-control"
+        placeholder="Sold Price"
+      />
+    </div>
+    <div class="col-auto">
+      <input
+        required
+        min="1"
+        name="charges"
+        [(ngModel)]="newStock.charges"
+        type="number"
+        class="form-control"
+        placeholder="Charges"
+      />
+    </div>
+    <div class="col-auto" *ngIf="newStock.actionType == 'Sell'">
+      <input
+        min="1"
+        name="taxes"
+        [(ngModel)]="newStock.taxes"
+        type="number"
+        class="form-control"
+        placeholder="Taxes"
+      />
+    </div>
+  </div>
+  <div class="total-summary">
+    <p>
+      Net {{ newStock.actionType === "Buy" ? "Payable" : "Receivable" }} Amount:
+    </p>
+    {{
+      (newStock.actionType === "Buy"
+        ? (newStock.quantity || 0) * (newStock.costPrice || 0) +
+          (newStock.charges || 0)
+        : newStock.actionType === "Sell"
+        ? (newStock.quantity || 0) * (newStock.soldPrice || 0) -
+          (newStock.charges || 0) -
+          (newStock.taxes || 0)
+        : 0
+      ) | number: "1.2-2"
+    }}
+  </div>
+  <div class="total-summary" *ngIf="newStock.actionType == 'Sell'">
+    <p>Net Profit:</p>
+    {{
+      (newStock.quantity || 0) *
+        ((newStock.soldPrice || 0) - (newStock.netCostPrice || 0)) -
+        (newStock.charges || 0) -
+        (newStock.taxes || 0) | number: "1.2-2"
+    }}
+  </div>
+  <div class="form-group row">
+    <div class="col-sm-10">
+      <button
+        [disabled]="stockform.invalid"
+        type="submit"
+        class="btn btn-primary add-stock"
+      >
+        Add
+      </button>
+    </div>
+  </div>
+</form>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Ticker</th>
+      <th scope="col">Quantity</th>
+      <th scope="col">LTP</th>
+      <th scope="col">Avg Cost Price</th>
+      <th scope="col">Net P/L (amt)</th>
+      <th scope="col">Net P/L (%)</th>
+      <th scope="col">Net Worth</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let assets of totalStocks; let i = index">
+      <th scope="row">{{ i + 1 }}</th>
+      <td>{{ assets.ticker }}</td>
+      <td>{{ assets.quantity }}</td>
+      <td>{{ (assets.costPrice || 0) * 1.2 | number: "1.2-2" }}</td>
+      <td>{{ assets.costPrice || 0 | number: "1.2-2" }}</td>
+      <td>
+        {{
+          (assets.quantity || 0) *
+            ((assets.costPrice || 0) * 1.2 - (assets.costPrice || 0))
+            | number: "1.2-2"
+        }}
+      </td>
+      <td>
+        {{
+          (((assets.costPrice || 0) * 1.2 - (assets.costPrice || 0)) * 100) /
+            (assets.costPrice || 1) | number: "1.2-2"
+        }}
+      </td>
+      <td>
+        {{
+          (assets.quantity || 0) * (assets.costPrice || 0) * 1.14
+            | number: "1.2-2"
+        }}
+      </td>
+    </tr>
+    <tr *ngIf="!totalStocks?.length">
+      <td colspan="9" class="text-center p-5">No records found</td>
+    </tr>
+  </tbody>
+</table>

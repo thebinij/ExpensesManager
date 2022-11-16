@@ -45,16 +45,6 @@
     </div>
     <div class="col-auto">
       <input
-        name="description"
-        [(ngModel)]="newExpense.description"
-        type="text"
-        maxlength="40"
-        class="form-control"
-        placeholder="Description"
-      />
-    </div>
-    <div class="col-auto">
-      <input
         required
         min="1"
         name="amount"
@@ -62,6 +52,16 @@
         type="number"
         class="form-control"
         placeholder="Amount"
+      />
+    </div>
+    <div class="col-auto">
+      <input
+        name="description"
+        [(ngModel)]="newExpense.description"
+        type="text"
+        maxlength="40"
+        class="form-control"
+        placeholder="Description"
       />
     </div>
   </div>

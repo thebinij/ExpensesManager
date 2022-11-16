@@ -1,0 +1,34 @@
+<div class="content-wrapper">
+  <div class="button-group">
+    <button type="button" class="btn btn-success" routerLink="stocks">
+      New Stock
+    </button>
+    <button type="button" routerLink="/assets" class="btn btn-secondary">
+      Close
+    </button>
+  </div>
+  <router-outlet></router-outlet>
+  <!-- <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Date</th>
+        <th scope="col">Type</th>
+        <th scope="col">Description</th>
+        <th scope="col">Amount</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let assets of totalAssets; let i = index">
+        <th scope="row">{{ i + 1 }}</th>
+        <td>{{ assets.date | date: "longDate" }}</td>
+        <td>{{ assets.type }}</td>
+        <td>{{ assets.description }}</td>
+        <td>{{ assets.amount }}</td>
+      </tr>
+      <tr *ngIf="!totalAssets?.length">
+        <td colspan="5" class="text-center p-5">No records found</td>
+      </tr>
+    </tbody>
+  </table> -->
+</div>
