@@ -25,21 +25,19 @@ export class StocksComponent implements OnInit {
 }
 totalStocks:Stock[] = []
 
-  constructor(private stock: StockService) { }
+  constructor(private stockService: StockService) { }
 
   ngOnInit(): void {
-    this.stock.getStock().subscribe({
+    this.stockService.stocks$.subscribe({
       next:response=>{
-        this.fixStockData(response.data)
-        this.totalStocks =  this.fixStockData(response.data)
+        this.totalStocks =  this.fixStockData(response)
       }
     })
   }
 
   fixStockData(data:any[]){
     let alteredData:any[] = [];
-    
-    for(let i = 0;i< data.length; i++){
+    for(let i = 0;i< data?.length; i++){
       let currentIndex =alteredData.findIndex(s=>s['ticker']==data[i].ticker)
       if(currentIndex>=0){
         if(data[i].actionType=='Buy'){
@@ -64,7 +62,7 @@ totalStocks:Stock[] = []
   }
 
   createNewStock(){
-    this.stock.addNewStock(this.newStock).subscribe({
+    this.stockService.addNewStock(this.newStock).subscribe({
       next: data =>{
         console.log(data)
       },
