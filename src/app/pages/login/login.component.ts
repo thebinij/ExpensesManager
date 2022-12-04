@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { LoginService } from '../../_services/login.service';
 import { ToastService } from '../../shared/toast-notification/service/toast.service';
+import { AuthService } from 'src/app/_services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -12,25 +12,28 @@ export class LoginComponent implements OnInit {
   email: string = '';
   password: string = '';
 
-  constructor(private route:Router,private loginservice: LoginService,  private toastService: ToastService) {}
+  constructor(private route:Router,private authservice: AuthService,  private toastService: ToastService) {}
 
   ngOnInit(): void {
-    if(localStorage.getItem('refreshToken')){
+    //checking user exists
+    if(localStorage.getItem('user')){
       this.route.navigateByUrl('/dashboard')
     }
   }
+
   navgativeToSignUp(){
     this.route.navigateByUrl('/signup')
   }
-  Login() {
+
+  Login():void {
     if(!this.email || !this.password ){
+      this.toastService.showErrorToast('Error', "Invalid Crediential!");
       return;
     }
-    this.loginservice.Login(this.email, this.password).subscribe({
+
+    this.authservice.login(this.email, this.password).subscribe({
       next: (data) => {
-        localStorage.setItem('accessToken',data.token)
-        localStorage.setItem('refreshToken',data.refreshToken)
-        this.route.navigateByUrl('/dashboard')
+        console.log(data)
         this.toastService.showSuccessToast('Success', 'Login Successfull!!!');
       },
       error: (error) => {

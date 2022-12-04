@@ -1,14 +1,13 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivateChild, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
-import { LoginService } from '../_services/login.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ExpenseGuard implements CanActivateChild {
 
-  constructor(private loginservice: LoginService){}
+  constructor(){}
 
   canActivateChild(
     route: ActivatedRouteSnapshot,
