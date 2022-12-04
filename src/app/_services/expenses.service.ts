@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, SkipSelf } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BehaviorSubject, map, mergeMap, shareReplay } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -13,7 +13,7 @@ const httpOptions = {
 })
 export class ExpensesService {
   private _expensesData$ = new BehaviorSubject<void>(undefined);
-  constructor(private http: HttpClient) {}
+  constructor(@SkipSelf() private http: HttpClient) {}
 
    apiRequest$ = this.http.get<any[]>(`${environment.apiUrl}/expenses`,httpOptions).pipe(map((value:any)=>{
     console.log('getting data from server');
