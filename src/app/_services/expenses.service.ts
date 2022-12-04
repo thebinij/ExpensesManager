@@ -13,7 +13,7 @@ const httpOptions = {
 })
 export class ExpensesService {
   private _expensesData$ = new BehaviorSubject<void>(undefined);
-  constructor(@SkipSelf() private http: HttpClient) {}
+  constructor(private http: HttpClient) {}
 
    apiRequest$ = this.http.get<any[]>(`${environment.apiUrl}/expenses`,httpOptions).pipe(map((value:any)=>{
     console.log('getting data from server');
