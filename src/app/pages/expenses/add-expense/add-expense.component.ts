@@ -5,9 +5,9 @@ import { ToastService } from 'src/app/shared/toast-notification/service/toast.se
 import {
   AppDateAdapter,
   APP_DATE_FORMATS,
-} from '../../shared/custom-date-format/my-date-format';
+} from '../../../shared/custom-date-format/my-date-format';
 import { Expense } from '../expenses';
-import { AddExpensesService } from './add-expenses.service';
+import { AddExpensesService } from '../../../_services/add-expenses.service';
 
 @Component({
   selector: 'app-add-expense',

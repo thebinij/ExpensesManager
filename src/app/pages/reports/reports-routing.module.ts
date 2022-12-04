@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ReportsGuard } from '../guards/reports.guard';
+import { ReportsGuard } from '../../guards/reports.guard';
 import { ReportsComponent } from './reports.component';
 
 const routes: Routes = [

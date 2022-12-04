@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { User } from '../shared/schemas/interface';
-import { ToastService } from '../shared/toast-notification/service/toast.service';
-import { SignupService } from './signup.service';
+import { AuthService } from 'src/app/_services/auth.service';
+import { User } from '../../shared/schemas/interface';
+import { ToastService } from '../../shared/toast-notification/service/toast.service';
 
 @Component({
   selector: 'app-signup',
@@ -17,7 +17,7 @@ export class SignupComponent implements OnInit {
     confirmpassword:''
   };
   
-  constructor(private route:Router,private signupService: SignupService,  private toastService: ToastService) {}
+  constructor(private route:Router,private authService: AuthService,  private toastService: ToastService) {}
 
   ngOnInit(): void {
     if(localStorage.getItem('refreshToken')){
@@ -28,14 +28,19 @@ export class SignupComponent implements OnInit {
   navgativeToSignIn(){
     this.route.navigateByUrl('/login')
   }
-  signUp() {
+
+
+  initiateSignUp():void {
+    // check whether password and confirm password matches
     if(this.newUser.password !== this.newUser.confirmpassword){
       this.toastService.showErrorToast('Error', "Password Doesn't Match");
       this.newUser.password = '';
       this.newUser.confirmpassword = '';
       return;
     }
-    this.signupService.SignUp(this.newUser.fullname,this.newUser.email,this.newUser.password).subscribe({
+    const {fullname,email,password}= this.newUser
+
+    this.authService.register(fullname,email,password).subscribe({
       next: (data) => {
         localStorage.setItem('accessToken',data.token)
         localStorage.setItem('refreshToken',data.refreshToken)
@@ -55,11 +60,5 @@ export class SignupComponent implements OnInit {
         }
       },
     });
-    this.newUser = {
-      fullname: '',
-      email: '',
-      password: '',
-      confirmpassword:''
-    };
   }
 }

@@ -6,3 +6,7 @@
 > ng g c component-name
 
 # Generate Service
+
+# Generate Interceptor
+
+> ng g interceptor component-name

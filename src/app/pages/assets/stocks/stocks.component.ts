@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DateAdapter, MAT_DATE_FORMATS } from '@angular/material/core';
 import { AppDateAdapter, APP_DATE_FORMATS } from 'src/app/shared/custom-date-format/my-date-format';
 import { Stock } from 'src/app/shared/schemas/interface';
-import { StockService } from './stock.service';
+import { StockService } from '../../../_services/stock.service';
 
 @Component({
   selector: 'app-stocks',

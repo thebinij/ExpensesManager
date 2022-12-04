@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import * as dayjs from 'dayjs';
 import { Observable, } from 'rxjs';
-import { Expense } from './expenses';
+import { Expense } from '../pages/expenses/expenses';
+
 
 @Injectable({
   providedIn: 'root'

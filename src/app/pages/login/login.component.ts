@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ToastService } from '../shared/toast-notification/service/toast.service';
-import { LoginService } from './login.service';
+import { LoginService } from '../../_services/login.service';
+import { ToastService } from '../../shared/toast-notification/service/toast.service';
 
 @Component({
   selector: 'app-login',
