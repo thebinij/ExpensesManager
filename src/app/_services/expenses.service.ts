@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, SkipSelf } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BehaviorSubject, map, mergeMap, shareReplay } from 'rxjs';
 import { environment } from 'src/environments/environment';
