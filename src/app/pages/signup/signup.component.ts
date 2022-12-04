@@ -20,7 +20,7 @@ export class SignupComponent implements OnInit {
   constructor(private route:Router,private authService: AuthService,  private toastService: ToastService) {}
 
   ngOnInit(): void {
-    if(localStorage.getItem('refreshToken')){
+    if(localStorage.getItem('user')){
       this.route.navigateByUrl('/dashboard')
     }
   }
@@ -30,7 +30,7 @@ export class SignupComponent implements OnInit {
   }
 
 
-  initiateSignUp():void {
+  SignUp():void {
     // check whether password and confirm password matches
     if(this.newUser.password !== this.newUser.confirmpassword){
       this.toastService.showErrorToast('Error', "Password Doesn't Match");
@@ -42,9 +42,6 @@ export class SignupComponent implements OnInit {
 
     this.authService.register(fullname,email,password).subscribe({
       next: (data) => {
-        localStorage.setItem('accessToken',data.token)
-        localStorage.setItem('refreshToken',data.refreshToken)
-        this.route.navigateByUrl('/dashboard')
         this.toastService.showSuccessToast('Success', 'SignUp Successfull!!!');
       },
       error: (error) => {

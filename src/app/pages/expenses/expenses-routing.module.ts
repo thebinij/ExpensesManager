@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ExpenseGuard } from '../../guards/expense.guard';
+import { ExpenseGuard } from '../../_guards/expense.guard';
 import { AddExpenseComponent } from './add-expense/add-expense.component';
 import { ExpensesComponent } from './expenses.component';
 

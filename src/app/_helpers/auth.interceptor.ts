@@ -23,8 +23,8 @@ export class AuthInterceptor implements HttpInterceptor {
       }
     });
     const token = this.authService.getAuthToken();
+    console.log(token,this.skipInterceptor)
     if(token && !this.skipInterceptor){
-      console.log(this.skipInterceptor)
       const tokenizedReq  = request.clone({
         setHeaders:{
           Authorization: `Bearer ${token}`
