@@ -32,3 +32,11 @@ export interface Stock {
     soldPrice?:number,
     taxes?:number
 }
+
+export interface Report {
+    postId: number
+    id: number,
+    name: string,
+    email: string,
+    body: string
+}

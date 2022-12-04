@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Report } from '../pages/reports/reports';
+import { Report } from '../shared/schemas/interface';
+
 
 @Injectable({
   providedIn: 'root'
