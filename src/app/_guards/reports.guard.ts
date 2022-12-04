@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import {  ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
 import { Observable } from 'rxjs';
-import { Report } from '../pages/reports/reports';
+import { Report } from '../shared/schemas/interface';
+
 import { ReportsService } from '../_services/reports.service';
 
 @Injectable({

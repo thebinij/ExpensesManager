@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Expense } from 'src/app/shared/schemas/interface';
 import { ExpensesService } from 'src/app/_services/expenses.service';
-import { Expense } from './expenses';
 
 
 @Component({
@@ -18,16 +18,20 @@ export class ExpensesComponent implements OnInit {
   totalExpenses:Expense[] | undefined;
 
   ngOnInit(): void {
-    this.expenseservice.getExpenses().subscribe({
-      next: response => {
-          this.totalExpenses = response.data
+    this.expenseservice.expenses$.subscribe({
+      next: data =>{
+  
+        this.totalExpenses=data
       },
-      error: error => {
-          this.errorMessage = error.message;
-          console.error('There was an error!', error);
+      error: error =>{
+        console.error("There was an error", error)
       }
+
+    })
   }
-  )
+
+  refreshDate():void{
+     this.expenseservice.updateData()
   }
   get numbers(): number[] {
     return [1,2]

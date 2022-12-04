@@ -23,7 +23,6 @@ export class AuthInterceptor implements HttpInterceptor {
       }
     });
     const token = this.authService.getAuthToken();
-    console.log(token,this.skipInterceptor)
     if(token && !this.skipInterceptor){
       const tokenizedReq  = request.clone({
         setHeaders:{
@@ -31,7 +30,6 @@ export class AuthInterceptor implements HttpInterceptor {
         }  
       })
       return next.handle(tokenizedReq).pipe(map((event: HttpEvent<any>) => {
-        console.log(event)
         if (event instanceof HttpResponse) {
           if (event.status === 401) {
             this.router.navigateByUrl('/login');

@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, shareReplay } from 'rxjs';
-import { ExpensesCacheService } from './expenses-cache.service';
+import { BehaviorSubject, map, mergeMap, shareReplay } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { Expense } from '../shared/schemas/interface';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
@@ -12,19 +12,33 @@ const httpOptions = {
   providedIn: 'root',
 })
 export class ExpensesService {
+  private _expensesData$ = new BehaviorSubject<void>(undefined);
+  constructor(private http: HttpClient) {}
 
-  readonly cache_size = 1;
+   apiRequest$ = this.http.get<any[]>(`${environment.apiUrl}/expenses`,httpOptions).pipe(map((value:any)=>{
+    console.log('getting data from server');
+    return value?.data.map((expense:any)=>({
+      ...expense,
+      timeStamp: new Date().toISOString()
+    }))
+  }))
 
-  constructor(private http: HttpClient, private expensesCacheService: ExpensesCacheService) {}
+  public expenses$ = this._expensesData$.pipe(
+    mergeMap(() => this.apiRequest$),
+    shareReplay(1)
+  );
 
-  getExpenses(): Observable<any> {
-    let expenses$ = this.expensesCacheService.getValue();
-    console.log('cached:', expenses$)
-
-    if (!expenses$) {
-       expenses$ = this.http.get<any>(`${environment.apiUrl}/expenses`,httpOptions).pipe(shareReplay(this.cache_size))
-      this.expensesCacheService.setValue(expenses$)
-    }
-    return expenses$;
+  updateData() {
+    console.log('refresh is called')
+    this._expensesData$.next();
   }
+
+  addExpense(payload:Expense) {
+    const body = JSON.stringify( payload );
+    return this.http.post<any>(
+      `${environment.apiUrl}/expenses`,body,httpOptions )
+      
+  }
+
+
 }

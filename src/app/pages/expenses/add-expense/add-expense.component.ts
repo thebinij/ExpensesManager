@@ -6,8 +6,9 @@ import {
   AppDateAdapter,
   APP_DATE_FORMATS,
 } from '../../../shared/custom-date-format/my-date-format';
-import { Expense } from '../expenses';
-import { AddExpensesService } from '../../../_services/add-expenses.service';
+;
+import { ExpensesService } from 'src/app/_services/expenses.service';
+import { Expense } from 'src/app/shared/schemas/interface';
 
 @Component({
   selector: 'app-add-expense',
@@ -30,7 +31,7 @@ export class AddExpenseComponent implements OnInit {
   expenseId: any;
 
   constructor(
-    private addExpensesService: AddExpensesService,
+    private addExpensesService: ExpensesService,
     private toastService: ToastService
   ) {}
 
