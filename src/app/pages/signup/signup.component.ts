@@ -16,6 +16,8 @@ export class SignupComponent implements OnInit {
     password: '',
     confirmpassword:''
   };
+  isLoading: boolean = false;
+
   
   constructor(private route:Router,private authService: AuthService,  private toastService: ToastService) {}
 
@@ -31,6 +33,7 @@ export class SignupComponent implements OnInit {
 
 
   SignUp():void {
+    this.isLoading= true;
     // check whether password and confirm password matches
     if(this.newUser.password !== this.newUser.confirmpassword){
       this.toastService.showErrorToast('Error', "Password Doesn't Match");
@@ -43,6 +46,7 @@ export class SignupComponent implements OnInit {
     this.authService.register(fullname,email,password).subscribe({
       next: (data) => {
         this.toastService.showSuccessToast('Success', 'SignUp Successfull!!!');
+        this.isLoading= false;
       },
       error: (error) => {
         console.error(error);
@@ -55,6 +59,7 @@ export class SignupComponent implements OnInit {
         else{
           this.toastService.showErrorToast('Error',"Something went Wrong!");
         }
+        this.isLoading= false;
       },
     });
   }

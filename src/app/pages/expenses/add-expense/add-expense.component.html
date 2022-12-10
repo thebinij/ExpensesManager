@@ -72,7 +72,13 @@
         type="submit"
         class="btn btn-primary add-expense"
       >
-        Add
+        <span
+          class="spinner-border spinner-border-sm"
+          role="status"
+          aria-hidden="true"
+          *ngIf="isLoading"
+        ></span>
+        {{ isLoading ? "Adding" : "Add" }}
       </button>
     </div>
   </div>

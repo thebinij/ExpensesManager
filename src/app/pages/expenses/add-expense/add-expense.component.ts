@@ -8,6 +8,7 @@ import {
 } from '../../../shared/custom-date-format/my-date-format';
 import { ExpensesService } from 'src/app/_services/expenses.service';
 import { Expense } from 'src/app/_models/interface';
+import { AuthService } from 'src/app/_services/auth.service';
 @Component({
   selector: 'app-add-expense',
   templateUrl: './add-expense.component.html',
@@ -27,24 +28,44 @@ export class AddExpenseComponent  implements OnInit {
   };
   errorMessage: any;
   expenseId: any;
+  isLoading: boolean;
 
   constructor(
     private addExpensesService: ExpensesService,
-    private toastService: ToastService
-  ) {}
+    private toastService: ToastService,
+    private authService: AuthService
+  ) {
+    this.isLoading = false;
+  }
 
   ngOnInit(): void {}
 
   createNewExpenses() {
+    this.isLoading = true;
     this.addExpensesService.addExpense(this.newExpense).subscribe({
       next: (data) => {
         console.log(data);
         this.showToast(EventTypes.Success);
+        this.isLoading =false;
+
       },
       error: (error) => {
         this.errorMessage = error.message;
-        console.error('There was an error!', error);
+        if(error.status=== 403){
+       
+          this.authService.logout().subscribe({
+            next: (data) => {
+              console.log('loging out')
+            },
+            error: (error) => {
+              console.error('There was an error!', error);
+            }
+         
+          })
+        } 
+        console.error('There was an error! Code:', error.status);
         this.showToast(EventTypes.Error);
+        this.isLoading =false;
       },
     });
 

@@ -11,6 +11,7 @@ import { AuthService } from 'src/app/_services/auth.service';
 export class LoginComponent implements OnInit {
   email: string = '';
   password: string = '';
+  isLoading: boolean = false;
 
   constructor(private route:Router,private authservice: AuthService,  private toastService: ToastService) {}
 
@@ -25,7 +26,14 @@ export class LoginComponent implements OnInit {
     this.route.navigateByUrl('/signup')
   }
 
+  loginWithDemoAccount(){
+    this.email = 'demouser@gmail.com'
+    this.password = "demouser123"
+    this.Login();
+  }
+
   Login():void {
+    this.isLoading= true;
     if(!this.email || !this.password ){
       this.toastService.showErrorToast('Error', "Invalid Crediential!");
       return;
@@ -35,6 +43,7 @@ export class LoginComponent implements OnInit {
       next: (data) => {
         console.log(data)
         this.toastService.showSuccessToast('Success', 'Login Successfull!!!');
+        this.isLoading= false;
       },
       error: (error) => {
         console.error(error);
@@ -47,6 +56,7 @@ export class LoginComponent implements OnInit {
         else{
           this.toastService.showErrorToast('Error',"Something went Wrong!");
         }
+        this.isLoading= false;
       },
     });
   }

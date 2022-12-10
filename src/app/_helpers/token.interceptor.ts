@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 
 // THIS INTERCEPTOR IS NOT USED CURRENTLY
 @Injectable()
-export class AuthInterceptor implements HttpInterceptor {
+export class TokenInterceptor implements HttpInterceptor {
   omitCalls = ['login', 'signup','auth'];
   skipInterceptor = false;
 
@@ -20,11 +20,13 @@ export class AuthInterceptor implements HttpInterceptor {
   constructor(private router: Router,private authService: AuthService) {}
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+
     this.omitCalls.forEach(api => {
       if (request.url.includes(api)) {
         this.skipInterceptor = true;
       }
     });
+    
     const token = this.authService.getAuthToken();
     if(token && !this.skipInterceptor){
       const tokenizedReq  = request.clone({

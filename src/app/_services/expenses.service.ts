@@ -1,6 +1,6 @@
 import {Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { BehaviorSubject, map, mergeMap, shareReplay } from 'rxjs';
+import { BehaviorSubject, map, mergeMap, shareReplay, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Expense } from '../_models/interface';
 import { AuthService } from './auth.service';
@@ -10,7 +10,7 @@ import { AuthService } from './auth.service';
   providedIn: 'root',
 })
 export class ExpensesService {
-  private _expensesData$ = new BehaviorSubject<void>(undefined);
+  private _expensesData$ = new BehaviorSubject<any[]>([]);
   private _token = this.authService.getAuthToken();
 
 
@@ -35,13 +35,17 @@ export class ExpensesService {
 
   updateData() {
     console.log('refresh is called')
-    this._expensesData$.next();
+    this._expensesData$.next([]);
   }
 
   addExpense(payload:Expense) {
-    const body = JSON.stringify( payload );
+  const body = JSON.stringify( payload );
+
+
  return this.http.post<any>(
-      `${environment.apiUrl}/expenses`,body,this.httpOptions )
+      `${environment.apiUrl}/expenses`,body,this.httpOptions ).pipe(tap(addedExpense => {
+        this._expensesData$.next([...this._expensesData$.getValue(), addedExpense])
+      }))
     }
 
 

@@ -32,7 +32,16 @@
   </div>
   <div class="form-group row">
     <div class="d-grid gap-2">
-      <button class="btn btn-primary" type="submit">Login</button>
+      <button class="btn btn-primary" type="submit">
+        <span
+          class="spinner-border spinner-border-sm"
+          role="status"
+          aria-hidden="true"
+          *ngIf="isLoading"
+        ></span>
+        Login
+      </button>
+
       <button
         class="btn btn-secondary"
         type="button"
@@ -40,6 +49,15 @@
       >
         Sign Up
       </button>
+      <div class="list-button">
+        <button
+          class="btn btn-warning"
+          type="button"
+          (click)="loginWithDemoAccount()"
+        >
+          Demo
+        </button>
+      </div>
     </div>
   </div>
 </form>

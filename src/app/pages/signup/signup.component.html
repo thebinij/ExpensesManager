@@ -58,7 +58,15 @@
   </div>
   <div class="form-group row">
     <div class="d-grid gap-2">
-      <button type="submit" class="btn btn-primary">Create New Account</button>
+      <button type="submit" class="btn btn-primary">
+        <span
+          class="spinner-border spinner-border-sm"
+          role="status"
+          aria-hidden="true"
+          *ngIf="isLoading"
+        ></span>
+        Create New Account
+      </button>
       <button
         class="btn btn-secondary"
         type="button"
