@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/_services/auth.service';
-import { User } from '../../shared/schemas/interface';
+import { User } from '../../_models/interface';
 import { ToastService } from '../../shared/toast-notification/service/toast.service';
 
 @Component({

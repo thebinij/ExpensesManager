@@ -1,7 +1,7 @@
 import {  Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { map, Observable } from 'rxjs';
-import { Report } from 'src/app/shared/schemas/interface';
+import { Report } from 'src/app/_models/interface';
 import { ReportsService } from '../../_services/reports.service';
 
 @Component({

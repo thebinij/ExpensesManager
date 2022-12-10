@@ -7,7 +7,7 @@ import {
   APP_DATE_FORMATS,
 } from '../../../shared/custom-date-format/my-date-format';
 import { ExpensesService } from 'src/app/_services/expenses.service';
-import { Expense } from 'src/app/shared/schemas/interface';
+import { Expense } from 'src/app/_models/interface';
 @Component({
   selector: 'app-add-expense',
   templateUrl: './add-expense.component.html',
@@ -15,7 +15,6 @@ import { Expense } from 'src/app/shared/schemas/interface';
   providers: [
     { provide: DateAdapter, useClass: AppDateAdapter },
     { provide: MAT_DATE_FORMATS, useValue: APP_DATE_FORMATS },
-
   ],
 })
 export class AddExpenseComponent  implements OnInit {

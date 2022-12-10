@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Report } from '../shared/schemas/interface';
+import { Report } from '../_models/interface';
 
 
 @Injectable({

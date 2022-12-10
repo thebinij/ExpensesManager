@@ -13,9 +13,8 @@ import { MatListModule } from '@angular/material/list';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { NotfoundComponent } from './pages/notfound/notfound.component';
 import { FormsModule } from '@angular/forms';
-
 import { EmailValidatorDirective } from './shared/email-validator/email-validator.directive';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { SignupComponent } from './pages/signup/signup.component';
 import { ToastComponent } from './shared/toast-notification/toast/toast.component';
 import { ToasterComponent } from './shared/toast-notification/toaster/toaster.component';
@@ -23,8 +22,6 @@ import { NavigationComponent } from './_layout/navigation/navigation.component';
 import { AssetsComponent } from './pages/assets/assets.component';
 import { ExpensesComponent } from './pages/expenses/expenses.component';
 import { LoginComponent } from './pages/login/login.component';
-import { AuthInterceptor } from './_helpers/auth.interceptor';
-
 
 
 @NgModule({
@@ -54,12 +51,6 @@ import { AuthInterceptor } from './_helpers/auth.interceptor';
     MatSidenavModule,
     MatIconModule,
     MatListModule,
-  ],
-  providers: [   {
-    provide: HTTP_INTERCEPTORS,
-    useClass: AuthInterceptor,
-    multi: true
-   }
   ],
   bootstrap: [AppComponent]
 })

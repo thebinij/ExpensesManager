@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, map, mergeMap, shareReplay } from 'rxjs';
-import { Stock } from 'src/app/shared/schemas/interface';
+import { Stock } from 'src/app/_models/interface';
 import { environment } from 'src/environments/environment';
 import { AuthService } from './auth.service';
 

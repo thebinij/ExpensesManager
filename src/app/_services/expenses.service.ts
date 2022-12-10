@@ -2,9 +2,8 @@ import {Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BehaviorSubject, map, mergeMap, shareReplay } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { Expense } from '../shared/schemas/interface';
+import { Expense } from '../_models/interface';
 import { AuthService } from './auth.service';
-import { SpinnerService } from './spinner.service';
 
 
 @Injectable({
@@ -15,7 +14,7 @@ export class ExpensesService {
   private _token = this.authService.getAuthToken();
 
 
-  constructor( private http: HttpClient,private authService: AuthService, private spinnerService: SpinnerService) {}
+  constructor( private http: HttpClient,private authService: AuthService) {}
 
   private httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' , 'Authorization':`Bearer ${this._token}` }),
@@ -41,10 +40,9 @@ export class ExpensesService {
 
   addExpense(payload:Expense) {
     const body = JSON.stringify( payload );
-    const postExpenseObservable = this.http.post<any>(
+ return this.http.post<any>(
       `${environment.apiUrl}/expenses`,body,this.httpOptions )
-    return this.spinnerService.handleRequest(postExpenseObservable)      
-  }
+    }
 
 
 }
