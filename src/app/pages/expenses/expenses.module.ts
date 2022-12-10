@@ -15,8 +15,8 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatDatepickerModule,
     MatNativeDateModule,
   ],
-  providers: [  
+  providers: [
     MatDatepickerModule
   ],
 })
-export class ExpensesModule { }
+export class ExpensesModule {}

@@ -15,7 +15,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
     MatNativeDateModule,
   ],
   providers: [  
-    MatDatepickerModule
+    MatDatepickerModule,
   ],
 })
 export class AssetsModule { }

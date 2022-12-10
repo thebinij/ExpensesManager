@@ -8,9 +8,6 @@ import {
 } from '../../../shared/custom-date-format/my-date-format';
 import { ExpensesService } from 'src/app/_services/expenses.service';
 import { Expense } from 'src/app/shared/schemas/interface';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { AuthInterceptor } from 'src/app/_helpers/auth.interceptor';
-
 @Component({
   selector: 'app-add-expense',
   templateUrl: './add-expense.component.html',
@@ -18,10 +15,10 @@ import { AuthInterceptor } from 'src/app/_helpers/auth.interceptor';
   providers: [
     { provide: DateAdapter, useClass: AppDateAdapter },
     { provide: MAT_DATE_FORMATS, useValue: APP_DATE_FORMATS },
-    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+
   ],
 })
-export class AddExpenseComponent implements OnInit {
+export class AddExpenseComponent  implements OnInit {
   newExpense: Expense = {
     date: new Date(),
     type: '',

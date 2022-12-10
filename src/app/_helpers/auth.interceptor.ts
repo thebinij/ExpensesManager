@@ -10,10 +10,13 @@ import { map, Observable } from 'rxjs';
 import { AuthService } from '../_services/auth.service';
 import { Router } from '@angular/router';
 
+// THIS INTERCEPTOR IS NOT USED CURRENTLY
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
   omitCalls = ['login', 'signup','auth'];
   skipInterceptor = false;
+
+
   constructor(private router: Router,private authService: AuthService) {}
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {

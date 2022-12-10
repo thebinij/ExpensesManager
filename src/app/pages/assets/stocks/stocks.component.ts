@@ -1,9 +1,7 @@
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { DateAdapter, MAT_DATE_FORMATS } from '@angular/material/core';
 import { AppDateAdapter, APP_DATE_FORMATS } from 'src/app/shared/custom-date-format/my-date-format';
 import { Stock } from 'src/app/shared/schemas/interface';
-import { AuthInterceptor } from 'src/app/_helpers/auth.interceptor';
 import { StockService } from '../../../_services/stock.service';
 
 @Component({
@@ -13,9 +11,6 @@ import { StockService } from '../../../_services/stock.service';
   providers: [
     { provide: DateAdapter, useClass: AppDateAdapter },
     { provide: MAT_DATE_FORMATS, useValue: APP_DATE_FORMATS },
-    {provide: HTTP_INTERCEPTORS,
-    useClass: AuthInterceptor,
-    multi: true}
   ],
 })
 export class StocksComponent implements OnInit {
